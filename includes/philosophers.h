@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:51 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/25 16:25:33 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/04/25 17:25:33 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int					create_philos(t_philo **philos, t_fork **forks,
 
 // THREADS.C
 int					create_threads(t_philo **philos, t_params *params);
+int wait_threads(t_philo **philos, t_params *params);
 
 //DEATH.C
 int					is_dead(t_philo *phil);

@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:12 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/25 16:27:14 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/04/25 17:24:41 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,20 @@ int	create_threads(t_philo **philos, t_params *params)
         return (0);
     //creer un thread pour check la mort DONE
     return (1);
+}
+
+int wait_threads(t_philo **philos, t_params *params)
+{
+    int current;
+    int return_code;
+
+    current = 0;
+    return_code = 1;
+    while(current < params->num)
+    {
+        if(pthread_join((*philos)[current].thread, NULL))
+            return_code = 0;
+        current ++;
+    }
+    return (return_code);
 }

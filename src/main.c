@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:53 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/25 15:29:56 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/04/25 17:25:15 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,7 @@ int	main(int ac, char **av)
 		exit_error("An error occured while creating philosophers");
 	if (!create_threads(&philos, &params))
 		exit_error("An error occurred while creating the threads");
+	if(!wait_threads(&philos, &params))
+		exit_error("Ca marche po");
+	return (0);
 }
