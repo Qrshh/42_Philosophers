@@ -9,7 +9,7 @@ PRFLAGS     = -ldl -lglfw -pthread -lm
 RM          = rm -rf
 
 
-SRC_FILES  += main utils init 
+SRC_FILES  += main utils init death fork threads
 SRC         = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 
 OBJ         = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

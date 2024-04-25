@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:48 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/13 21:07:55 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/04/24 20:35:04 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,22 @@ long	get_timestamp(void)
 	t = tv.tv_sec * 1000;
 	t2 = tv.tv_usec / 1000;
 	return (t + t2);
+}
+
+int ft_usleep(size_t milliseconds)
+{
+	size_t start;
+
+	start = get_timestamp();
+	while((get_timestamp() - start) < milliseconds)
+		usleep(500);
+	return(0);
+}
+
+void write_state(char *str, t_philo *phil)
+{
+	long current_time;
+
+	current_time = get_timestamp() - phil->param->start_time;
+	printf("%ld %d %s", current_time, phil->pos, str);
 }

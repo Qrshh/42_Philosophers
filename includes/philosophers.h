@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:51 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/15 22:07:44 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:25:33 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <unistd.h>
 
 typedef struct s_params
 {
@@ -26,6 +27,9 @@ typedef struct s_params
 	int				time_to_sleep;
 	int				meal_max;
 	long			start_time;
+	int 			is_dead;
+	pthread_mutex_t mutex_is_dead;
+	pthread_t death_thread;
 }					t_params;
 
 typedef struct s_fork
@@ -54,6 +58,9 @@ typedef struct s_philo
 // UTILS.C
 void				exit_error(char *msg);
 int					ft_atoi(const char *str);
+void 				write_state(char *str, t_philo *phil);
+int 				ft_usleep(size_t milliseconds);
+long				get_timestamp(void);
 
 // INIT.C
 int					init_params(t_params *params, int ac, char **av);
@@ -62,6 +69,17 @@ int					create_philos(t_philo **philos, t_fork **forks,
 
 // THREADS.C
 int					create_threads(t_philo **philos, t_params *params);
+
+//DEATH.C
+int					is_dead(t_philo *phil);
+int 				check_death(t_philo *phil, long current_time);
+void 				*check_philos_death(void *arg);
+
+//FORK.C
+void 				take_fork(char fork_name, t_philo *phil);
+void 				release_fork_and_sleep(t_philo *phil);
+void 				release_fork(char fork_name, t_philo *phil);
+
 
 // MAIN.C
 void				*philo_life(void *arg);

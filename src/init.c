@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:46 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/13 20:40:35 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:30:34 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_philo(t_philo *phil, t_fork **forks, t_params *params, int current)
 	if (current == params->num - 1)
 		phil->l_fork = &((*forks)[0]);
 	else
-		phil->l_fork - &((*forks)[current + 1]);
+		phil->l_fork = &((*forks)[current + 1]);
 	phil->l_fork->used = 0;
 	pthread_mutex_init(&(phil->l_fork->lock), NULL);
 	pthread_mutex_init(&(phil->meal_lock), NULL);
