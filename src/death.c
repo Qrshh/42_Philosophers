@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:52:48 by qrshh             #+#    #+#             */
-/*   Updated: 2024/04/25 16:25:56 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/04/29 17:43:18 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int is_dead(t_philo *phil)
 {
     int alive;
 
+    alive = 0;
     pthread_mutex_lock(&(phil->param->mutex_is_dead));
     alive = phil->param->is_dead;
     pthread_mutex_unlock(&(phil->param->mutex_is_dead));

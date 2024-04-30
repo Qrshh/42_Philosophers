@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:46 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/25 15:30:34 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/04/29 17:48:54 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	init_params(t_params *params, int ac, char **av)
 	params->time_to_eat = ft_atoi(av[3]);
 	params->time_to_sleep = ft_atoi(av[4]);
 	params->meal_max = -1;
+	params->is_dead = 0;
 	if (ac == 6)
 	{
 		params->meal_max = ft_atoi(av[5]);

@@ -5,7 +5,7 @@ OBJ_DIR     = obj/
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -g
-PRFLAGS     = -ldl -lglfw -pthread -lm
+PRFLAGS     = -ldl  -pthread -lm
 RM          = rm -rf
 
 
@@ -21,7 +21,7 @@ OBJ_CACHE   = .cache_exists
 all: 			 $(NAME)
 
 $(NAME): 		$(OBJ)
-					$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+					$(CC) $(CFLAGS) $(PRFLAGS) $(OBJ) -o $(NAME)
 					@echo "\033[0;32m$(shell echo $(NAME) | tr '[:lower:]' '[:upper:]') : COMPILED\033[0m"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c | $(OBJ_CACHE)

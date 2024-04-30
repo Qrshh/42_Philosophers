@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:53 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/25 17:25:15 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/04/29 17:49:47 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ void	*philo_life(void *arg)
 		take_fork('l', phil);
 		if(phil->l_taken)
 			take_fork('r', phil);
+    	printf("dzdz\n");
 		if(phil->l_taken && phil->r_taken)
 		{
+    		printf("dzdz\n");
 			write_state("is eating", phil);
 			ft_usleep(phil->param->time_to_eat);
 			phil->meal_count++;
