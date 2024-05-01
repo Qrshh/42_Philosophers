@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:48 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/24 20:35:04 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/05/01 20:23:17 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void write_state(char *str, t_philo *phil)
 	long current_time;
 
 	current_time = get_timestamp() - phil->param->start_time;
-	printf("%ld %d %s", current_time, phil->pos, str);
+	printf("%ld %d %s\n", current_time, phil->pos + 1, str);
 }

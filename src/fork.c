@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:44:59 by qrshh             #+#    #+#             */
-/*   Updated: 2024/04/29 17:47:35 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/04/30 20:29:58 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void take_fork(char fork_name, t_philo *phil)
             fork = phil->l_fork;
         }
         pthread_mutex_lock(&(fork->lock));
-        if(!taken && !fork->used)
+        if(!*taken && !fork->used)
         {
             *taken = 1;
             fork->used = 1;

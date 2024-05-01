@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:53 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/29 17:49:47 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/05/01 20:23:46 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	*philo_life(void *arg)
 	phil = (t_philo *)arg;
 	if (phil->pos % 2 == 0)
 		ft_usleep(phil->param->time_to_eat);
-			// faire la fonction usleep qui permet au philo d'attendre jusqu'a manger DONE
 	while (!is_dead(phil))                   
-		// faire une fonction qui permet de check si le philo n'est pas mort (mutex peut etre ????) DONE
 	{
 		if (phil->meal_count >= phil->param->meal_max
 			&& phil->param->meal_max > 0)
@@ -29,10 +27,8 @@ void	*philo_life(void *arg)
 		take_fork('l', phil);
 		if(phil->l_taken)
 			take_fork('r', phil);
-    	printf("dzdz\n");
 		if(phil->l_taken && phil->r_taken)
 		{
-    		printf("dzdz\n");
 			write_state("is eating", phil);
 			ft_usleep(phil->param->time_to_eat);
 			phil->meal_count++;
@@ -40,7 +36,6 @@ void	*philo_life(void *arg)
 			phil->last_meal = get_timestamp() - phil->param->start_time;
 			pthread_mutex_unlock(&(phil->meal_lock));
 			release_fork_and_sleep(phil);
-			//faire une fonction pour que le philo lache les forks et ça devrait être pas trop mal DONE
 		}
 		
 	}

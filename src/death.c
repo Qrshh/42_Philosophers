@@ -6,7 +6,7 @@
 /*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:52:48 by qrshh             #+#    #+#             */
-/*   Updated: 2024/04/29 17:43:18 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/05/01 19:52:12 by qrshh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ void *check_philos_death(void *arg)
     int current;
 
     philos = (t_philo **)arg;
-    params = philos[0]->param;
+    params = (*philos)[0].param;
     while(1)
     {
         current = 0;
         current_time = get_timestamp() - params->start_time;
-        while(current > params->num)
+        while(current < params->num)
         {
             if(check_death(&(*philos)[current], current_time))
                 return (NULL);
-            current ++;
+            current++;
         }
         ft_usleep(1);
     }
