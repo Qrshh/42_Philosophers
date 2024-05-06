@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:46 by abesneux          #+#    #+#             */
-/*   Updated: 2024/04/30 20:10:51 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/05/02 19:24:46 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_philo(t_philo *phil, t_fork **forks, t_params *params, int current)
 	phil->l_fork->used = 0;
 	pthread_mutex_init(&(phil->l_fork->lock), NULL);
 	pthread_mutex_init(&(phil->meal_lock), NULL);
+	pthread_mutex_init(&(phil->param->mutex_is_dead), NULL);
 }
 
 int	create_philos(t_philo **philos, t_fork **forks, t_params *params)

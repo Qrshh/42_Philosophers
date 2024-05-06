@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qrshh <qrshh@student.42.fr>                +#+  +:+       +#+        */
+/*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:48 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/01 20:23:17 by qrshh            ###   ########.fr       */
+/*   Updated: 2024/05/02 19:26:23 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,23 @@ long	get_timestamp(void)
 	return (t + t2);
 }
 
-int ft_usleep(size_t milliseconds)
+int	ft_usleep(size_t milliseconds)
 {
-	size_t start;
+	size_t	start;
 
 	start = get_timestamp();
-	while((get_timestamp() - start) < milliseconds)
+	while ((get_timestamp() - start) < milliseconds)
 		usleep(500);
-	return(0);
+	return (0);
 }
 
-void write_state(char *str, t_philo *phil)
+void	write_state(char *str, t_philo *phil)
 {
-	long current_time;
+	long	current_time;
 
 	current_time = get_timestamp() - phil->param->start_time;
-	printf("%ld %d %s\n", current_time, phil->pos + 1, str);
+	pthread_mutex_lock(&phil->param->mutex_is_dead);
+	if (phil->param->is_dead == 0)
+		printf("%ld %d %s\n", current_time, phil->pos + 1, str);
+	pthread_mutex_unlock(&phil->param->mutex_is_dead);
 }
