@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:52:48 by qrshh             #+#    #+#             */
-/*   Updated: 2024/05/02 19:24:22 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:34:24 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ int	is_dead(t_philo *phil)
 	alive = phil->param->is_dead;
 	pthread_mutex_unlock(&(phil->param->mutex_is_dead));
 	return (alive);
+}
+
+int stop_thread(t_philo *phil)
+{
+	pthread_mutex_lock(&(phil->param->mutex_is_dead));
+	phil->param->is_dead = 1;
+	pthread_mutex_unlock(&(phil->param->mutex_is_dead));
+	return(0);
 }
 
 int	check_death(t_philo *phil, long current_time)

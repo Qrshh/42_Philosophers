@@ -4,7 +4,7 @@ SRC_DIR     = src/
 OBJ_DIR     = obj/
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g
+CFLAGS      = -Wall -Wextra -Werror -g -fsanitize=thread
 PRFLAGS     = -ldl  -pthread -lm
 RM          = rm -rf
 

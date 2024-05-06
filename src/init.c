@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:46 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/02 19:24:46 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:30:53 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	init_params(t_params *params, int ac, char **av)
 		if (ft_atoi(av[5]) < 0)
 			return (0);
 	}
-	if (params->num <= 0 || params->time_to_die < 0 || params->time_to_eat < 0
+	if (params->num <= 0 || params->time_to_die <= 0 || params->time_to_eat < 0
 		|| params->time_to_sleep < 0)
 		return (0);
 	return (1);

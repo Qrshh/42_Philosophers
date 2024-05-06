@@ -6,11 +6,17 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:53 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/02 15:12:26 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:38:38 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+void free_all(t_philo *philos, t_fork *forks)
+{
+	free(philos);
+	free(forks);
+}
 
 void	*philo_life(void *arg)
 {
@@ -21,7 +27,7 @@ void	*philo_life(void *arg)
 		ft_usleep(phil->param->time_to_eat);
 	while (!is_dead(phil))
 	{
-		if (phil->meal_count >= phil->param->meal_max
+		if (phil->meal_count == phil->param->meal_max
 			&& phil->param->meal_max > 0)
 			break ;
 		take_fork('l', phil);
@@ -52,8 +58,8 @@ int	main(int ac, char **av)
 	if (!create_philos(&philos, &forks, &params))
 		exit_error("An error occured while creating philosophers");
 	if (!create_threads(&philos, &params))
-		exit_error("An error occurred while creating the threads");
+		return(stop_thread(&philos[0]), 0);
 	if (!wait_threads(&philos, &params))
-		exit_error("Ca marche po");
-	return (0);
+		return(free_all(philos, forks), 0);
+	return (free_all(philos, forks), 0);
 }

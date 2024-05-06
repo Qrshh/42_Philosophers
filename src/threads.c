@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:12 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/02 19:22:49 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:35:06 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int	wait_threads(t_philo **philos, t_params *params)
 			return_code = 0;
 		current++;
 	}
+	if (pthread_join(params->death_thread, NULL))
+        return_code = 0;
 	return (return_code);
 }

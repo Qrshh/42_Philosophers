@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:51 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/02 18:14:33 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:36:32 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int					wait_threads(t_philo **philos, t_params *params);
 int					is_dead(t_philo *phil);
 int					check_death(t_philo *phil, long current_time);
 void				*check_philos_death(void *arg);
+int					stop_thread(t_philo *phil);
 
 // FORK.C
 void				take_fork(char fork_name, t_philo *phil);
@@ -83,5 +84,6 @@ void				release_fork(char fork_name, t_philo *phil);
 
 // MAIN.C
 void				*philo_life(void *arg);
+void				free_all(t_philo *philos, t_fork *forks);
 
 #endif
