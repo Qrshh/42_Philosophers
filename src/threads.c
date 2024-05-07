@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:12 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/06 18:35:06 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:35:27 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	create_threads(t_philo **philos, t_params *params)
 	while (current < params->num)
 	{
 		if (pthread_create(&((*philos)[current].thread), NULL, philo_life,
-			&((*philos)[current])))
+				&((*philos)[current])))
 			return (0);
 		current++;
 	}
-	if (pthread_create(&(params->death_thread), NULL, check_philos_death,
-			philos))
-		return (0);
+	// if (pthread_create(&(params->death_thread), NULL, check_philos_death,
+	// 		philos))
+	// 	return (0);
 	return (1);
 }
 
@@ -44,7 +44,7 @@ int	wait_threads(t_philo **philos, t_params *params)
 			return_code = 0;
 		current++;
 	}
-	if (pthread_join(params->death_thread, NULL))
-        return_code = 0;
+	// if (pthread_join(params->death_thread, NULL))
+	// 	return_code = 0;
 	return (return_code);
 }

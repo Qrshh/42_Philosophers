@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:46 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/06 18:30:53 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:04:37 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_philo(t_philo *phil, t_fork **forks, t_params *params, int current)
 {
 	phil->param = params;
 	phil->pos = current;
-	phil->last_meal = 0;
+	phil->last_meal = get_timestamp();
 	phil->meal_count = 0;
 	phil->r_fork = &((*forks)[current]);
 	phil->r_taken = 0;

@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:52:48 by qrshh             #+#    #+#             */
-/*   Updated: 2024/05/06 17:34:24 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:53:22 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	is_dead(t_philo *phil)
 	return (alive);
 }
 
-int stop_thread(t_philo *phil)
+int	stop_thread(t_philo *phil)
 {
 	pthread_mutex_lock(&(phil->param->mutex_is_dead));
 	phil->param->is_dead = 1;
 	pthread_mutex_unlock(&(phil->param->mutex_is_dead));
-	return(0);
+	return (0);
 }
 
 int	check_death(t_philo *phil, long current_time)
@@ -40,7 +40,7 @@ int	check_death(t_philo *phil, long current_time)
 	pthread_mutex_lock(&(phil->meal_lock));
 	last_meal = current_time - phil->last_meal;
 	pthread_mutex_unlock(&(phil->meal_lock));
-	if (last_meal > phil->param->time_to_die)
+	if (last_meal > phil->param->time_to_die && phil->meal_count < phil->param->meal_max)
 	{
 		write_state("Died", phil);
 		pthread_mutex_lock(&(phil->param->mutex_is_dead));
