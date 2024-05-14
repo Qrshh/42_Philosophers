@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:48 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/07 19:06:02 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:47:41 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	exit_error(char *msg)
 	exit(EXIT_FAILURE);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int	sign;
-	int	result;
+	int			sign;
+	long long	result;
 
 	sign = 1;
 	result = 0;
@@ -55,13 +55,21 @@ long	get_timestamp(void)
 	return (t + t2);
 }
 
-int	ft_usleep(size_t milliseconds)
+int	ft_usleep(size_t milliseconds, t_philo *phil)
 {
 	size_t	start;
+	int dead;
 
 	start = get_timestamp();
 	while ((get_timestamp() - start) < milliseconds)
+	{
+		pthread_mutex_lock(&(phil->param->mutex_is_dead));
+		dead = phil->param->is_dead;
+		pthread_mutex_unlock(&(phil->param->mutex_is_dead));
+		if(dead == 1)
+			break;
 		usleep(500);
+	}
 	return (0);
 }
 

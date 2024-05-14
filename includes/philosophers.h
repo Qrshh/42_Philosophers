@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:51 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/07 19:09:41 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:04:39 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+#define INT_MAX 2147483647
+
 typedef struct s_params
 {
 	int				num;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	long long		time_to_die;
+	long long		time_to_eat;
+	long long		time_to_sleep;
 	int				meal_max;
 	long			start_time;
 	int				is_dead;
@@ -57,12 +59,13 @@ typedef struct s_philo
 
 // UTILS.C
 void				exit_error(char *msg);
-int					ft_atoi(const char *str);
+long long			ft_atoi(const char *str);
 void				write_state(char *str, t_philo *phil);
-int					ft_usleep(size_t milliseconds);
+int					ft_usleep(size_t milliseconds, t_philo *phil);
 long				get_timestamp(void);
 
 // INIT.C
+int					check_input(char **av);
 int					init_params(t_params *params, int ac, char **av);
 int					create_philos(t_philo **philos, t_fork **forks,
 						t_params *params);

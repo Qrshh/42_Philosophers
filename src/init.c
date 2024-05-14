@@ -6,11 +6,42 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:46 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/06 18:30:53 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:58:41 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+int	check_input(char **av)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (av[i])
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (av[i][j] < '0' || av[i][j] > '9')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int check_init(t_params *params)
+{
+	if (params->num <= 0|| params->time_to_die <= 0 || params->time_to_eat < 0
+		|| params->time_to_sleep < 0)
+		return (1);
+	if (params->num > INT_MAX || params->time_to_die > INT_MAX || params->time_to_eat > INT_MAX
+		|| params->time_to_sleep > INT_MAX)
+		return (1);
+	return (0);
+}
 
 int	init_params(t_params *params, int ac, char **av)
 {
@@ -27,15 +58,17 @@ int	init_params(t_params *params, int ac, char **av)
 	params->time_to_sleep = ft_atoi(av[4]);
 	params->meal_max = -1;
 	params->is_dead = 0;
+	if (check_input(av))
+		params->num = 0;
 	if (ac == 6)
 	{
 		params->meal_max = ft_atoi(av[5]);
 		if (ft_atoi(av[5]) < 0)
 			return (0);
 	}
-	if (params->num <= 0 || params->time_to_die <= 0 || params->time_to_eat < 0
-		|| params->time_to_sleep < 0)
+	if(check_init(params))
 		return (0);
+	pthread_mutex_init(&params->mutex_is_dead, NULL);
 	return (1);
 }
 
@@ -55,7 +88,6 @@ void	init_philo(t_philo *phil, t_fork **forks, t_params *params, int current)
 	phil->l_fork->used = 0;
 	pthread_mutex_init(&(phil->l_fork->lock), NULL);
 	pthread_mutex_init(&(phil->meal_lock), NULL);
-	pthread_mutex_init(&(phil->param->mutex_is_dead), NULL);
 }
 
 int	create_philos(t_philo **philos, t_fork **forks, t_params *params)

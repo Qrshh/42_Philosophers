@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   death.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vabaud <vabaud@student.42.fr>              +#+  +:+       +#+        */
+/*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:52:48 by qrshh             #+#    #+#             */
-/*   Updated: 2024/05/07 18:54:53 by vabaud           ###   ########.fr       */
+/*   Updated: 2024/05/14 19:04:49 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	is_dead(t_philo *phil)
 	return (alive);
 }
 
-int stop_thread(t_philo *phil)
+int	stop_thread(t_philo *phil)
 {
 	pthread_mutex_lock(&(phil->param->mutex_is_dead));
 	phil->param->is_dead = 1;
 	pthread_mutex_unlock(&(phil->param->mutex_is_dead));
-	return(0);
+	return (0);
 }
 
 int	check_death(t_philo *phil, long current_time)
@@ -51,24 +51,25 @@ int	check_death(t_philo *phil, long current_time)
 	return (dead);
 }
 
-int all_philo_have_eat(t_philo **philos)
+int	all_philo_have_eat(t_philo **philos)
 {
-    t_params *params;
-    int i = 0;
+	t_params	*params;
+	int			i;
 
-    params = (*philos)[0].param;
-    while (i < params->num)
-    {
-        pthread_mutex_lock(&(params->mutex_is_dead));
-        if ((*philos)[i].meal_count < params->meal_max)
-        {
-            pthread_mutex_unlock(&(params->mutex_is_dead));
-            return (0);
-        }
-        i++;
-        pthread_mutex_unlock(&(params->mutex_is_dead));
-    }
-    return (1);
+	i = 0;
+	params = (*philos)[0].param;
+	while (i < params->num)
+	{
+		pthread_mutex_lock(&(params->mutex_is_dead));
+		if ((*philos)[i].meal_count < params->meal_max)
+		{
+			pthread_mutex_unlock(&(params->mutex_is_dead));
+			return (0);
+		}
+		i++;
+		pthread_mutex_unlock(&(params->mutex_is_dead));
+	}
+	return (1);
 }
 
 void	*check_philos_death(void *arg)
@@ -86,13 +87,13 @@ void	*check_philos_death(void *arg)
 		current_time = get_timestamp() - params->start_time;
 		while (current < params->num)
 		{
-            if (all_philo_have_eat(philos) && params->meal_max != -1)
-                return (NULL);
+			if (all_philo_have_eat(philos) && params->meal_max != -1)
+				return (NULL);
 			if (check_death(&(*philos)[current], current_time))
 				return (NULL);
 			current++;
 		}
-		ft_usleep(1);
+		ft_usleep(1, philos[0]);
 	}
 	return (NULL);
 }

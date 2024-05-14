@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:44:59 by qrshh             #+#    #+#             */
-/*   Updated: 2024/05/07 19:07:53 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:04:52 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ void	release_fork_and_sleep(t_philo *phil)
 	release_fork('l', phil);
 	release_fork('r', phil);
 	write_state("is sleeping", phil);
-	ft_usleep(phil->param->time_to_sleep);
+	ft_usleep(phil->param->time_to_sleep, phil);
 	write_state("is thinking", phil);
 }
