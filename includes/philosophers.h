@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:51 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/14 19:04:39 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:29:06 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-#define INT_MAX 2147483647
+# define INT_MAX 2147483647
 
 typedef struct s_params
 {

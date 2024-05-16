@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:53 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/14 19:44:27 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:29:12 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	free_all(t_philo *philos, t_fork *forks)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < philos->param->num)
+	while (i < philos->param->num)
 	{
 		pthread_mutex_destroy(&(philos->l_fork->lock));
 		pthread_mutex_destroy(&(philos->meal_lock));
@@ -31,8 +31,8 @@ void	free_all(t_philo *philos, t_fork *forks)
 void	eating(t_philo *phil)
 {
 	write_state("is eating", phil);
-	if(phil->param->is_dead == 1)
-		return;
+	if (phil->param->is_dead == 1)
+		return ;
 	ft_usleep(phil->param->time_to_eat, phil);
 	pthread_mutex_lock(&(phil->meal_lock));
 	phil->last_meal = get_timestamp() - phil->param->start_time;

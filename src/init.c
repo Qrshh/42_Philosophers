@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:46 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/14 18:58:41 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:29:09 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int	check_input(char **av)
 	return (0);
 }
 
-int check_init(t_params *params)
+int	check_init(t_params *params)
 {
-	if (params->num <= 0|| params->time_to_die <= 0 || params->time_to_eat < 0
+	if (params->num <= 0 || params->time_to_die <= 0 || params->time_to_eat < 0
 		|| params->time_to_sleep < 0)
 		return (1);
-	if (params->num > INT_MAX || params->time_to_die > INT_MAX || params->time_to_eat > INT_MAX
-		|| params->time_to_sleep > INT_MAX)
+	if (params->num > INT_MAX || params->time_to_die > INT_MAX
+		|| params->time_to_eat > INT_MAX || params->time_to_sleep > INT_MAX)
 		return (1);
 	return (0);
 }
@@ -66,7 +66,7 @@ int	init_params(t_params *params, int ac, char **av)
 		if (ft_atoi(av[5]) < 0)
 			return (0);
 	}
-	if(check_init(params))
+	if (check_init(params))
 		return (0);
 	pthread_mutex_init(&params->mutex_is_dead, NULL);
 	return (1);

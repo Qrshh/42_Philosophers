@@ -6,7 +6,7 @@
 /*   By: abesneux <abesneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 20:39:48 by abesneux          #+#    #+#             */
-/*   Updated: 2024/05/14 19:47:41 by abesneux         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:32:09 by abesneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ long	get_timestamp(void)
 int	ft_usleep(size_t milliseconds, t_philo *phil)
 {
 	size_t	start;
-	int dead;
+	int		dead;
 
 	start = get_timestamp();
 	while ((get_timestamp() - start) < milliseconds)
@@ -66,8 +66,8 @@ int	ft_usleep(size_t milliseconds, t_philo *phil)
 		pthread_mutex_lock(&(phil->param->mutex_is_dead));
 		dead = phil->param->is_dead;
 		pthread_mutex_unlock(&(phil->param->mutex_is_dead));
-		if(dead == 1)
-			break;
+		if (dead == 1)
+			break ;
 		usleep(500);
 	}
 	return (0);
